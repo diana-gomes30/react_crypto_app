@@ -1,12 +1,14 @@
 import { Component } from 'react';
+import { Navbar } from '../Navbar';
+import { SearchInput } from '../SearchInput';
 import { CryptoTable } from '../CryptoTable';
-import Navbar from '../Navbar';
 
 class Home extends Component {
   render() {
     return (
       <div>
         <Navbar />
+        <SearchInput />
         <CryptoTable />
       </div>
     );

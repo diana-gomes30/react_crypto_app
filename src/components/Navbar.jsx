@@ -1,4 +1,4 @@
-function Navbar() {
+export const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="logo">
@@ -16,6 +16,4 @@ function Navbar() {
       </ul>
     </nav>
   );
-}
-
-export default Navbar;
+};

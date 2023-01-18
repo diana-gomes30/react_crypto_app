@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Navbar from '../Navbar';
+import { Navbar } from '../Navbar';
 
 class Watchlist extends Component {
   render() {
