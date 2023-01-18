@@ -55,11 +55,12 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px 0px;
 }
 
 table {
   color: #e0e1dd;
-  width: 800px;
+  width: 75%;
   height: 200px;
   border-collapse: collapse;
 }
@@ -68,7 +69,7 @@ table {
   border-top: 1px solid #e0e1dd;
 }
 
-tbody > tr:hover {
+.data-table:hover {
   background-color: #415a77;
 }
 

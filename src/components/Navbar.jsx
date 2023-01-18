@@ -5,7 +5,7 @@ function Navbar() {
         <a href="/">Crypto App</a>
       </div>
       <ul className="nav-links">
-        <div class="menu">
+        <div className="menu">
           <li>
             <a href="/top10">Top 10</a>
           </li>

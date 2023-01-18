@@ -28,19 +28,19 @@ export const CryptoTable = () => {
   return (
     <div className="table-coins">
       <table>
-        <tr className="header-table">
-          <th></th>
-          <th>#</th>
-          <th>Coin</th>
-          <th>Price</th>
-          <th>1h</th>
-          <th>24h</th>
-          <th>7d</th>
-          <th>24h Volume</th>
-          <th>Mkt Cap</th>
-        </tr>
-
         <tbody>
+          <tr className="header-table">
+            <th></th>
+            <th>#</th>
+            <th>Coin</th>
+            <th>Price</th>
+            <th>1h</th>
+            <th>24h</th>
+            <th>7d</th>
+            <th>24h Volume</th>
+            <th>Mkt Cap</th>
+          </tr>
+
           {cryptoCurrencies.map((cryptoCurrency, index) => (
             <tr key={index} className="data-table">
               <td>
