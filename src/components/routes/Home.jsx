@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import { CryptoTable } from '../CryptoTable';
 import Navbar from '../Navbar';
 
 class Home extends Component {
@@ -6,7 +7,8 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
-        <h2>Home</h2>
+        <br />
+        <CryptoTable />
       </div>
     );
   }

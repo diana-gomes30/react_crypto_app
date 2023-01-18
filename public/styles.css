@@ -49,3 +49,38 @@ li {
 .menu li {
   padding: 5px 14px;
 }
+
+/* TABLE */
+.table-coins {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  color: #e0e1dd;
+  width: 800px;
+  height: 200px;
+  border-collapse: collapse;
+}
+
+.header-table {
+  border-top: 1px solid #e0e1dd;
+}
+
+tbody > tr:hover {
+  background-color: #415a77;
+}
+
+tr {
+  border-bottom: 1px solid #e0e1dd;
+}
+
+td {
+  text-align: center;
+}
+
+.favorite-icon:hover {
+  color: yellow;
+  cursor: pointer;
+}
