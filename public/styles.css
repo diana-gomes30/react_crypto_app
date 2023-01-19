@@ -61,7 +61,7 @@ li {
 table {
   color: #e0e1dd;
   width: 75%;
-  height: 200px;
+  font-size: 18px;
   border-collapse: collapse;
 }
 
@@ -77,11 +77,39 @@ tr {
   border-bottom: 1px solid #e0e1dd;
 }
 
+th {
+  padding: 7px 7px;
+}
+
 td {
   text-align: center;
+  padding: 10px 10px;
 }
 
 .favorite-icon:hover {
   color: yellow;
   cursor: pointer;
+}
+
+/* SEARCH AREA */
+.search-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.search-area input {
+  color: #0d1b2a;
+  background-color: #e0e1dd;
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.search-area i {
+  color: #0d1b2a;
+  background-color: #e0e1dd;
+  padding: 10px;
+  font-size: 15px;
 }
