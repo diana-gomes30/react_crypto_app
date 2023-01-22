@@ -105,20 +105,32 @@ td img {
 
 .l-align {
   text-align: left;
-  margin: 0px 20px;
 }
 
 .r-align {
   text-align: right;
-  margin: 0px 20px;
+}
+
+.table-options {
+  display: flex;
+  justify-content: center;
+  width: 75%;
+  margin: auto;
+}
+
+.num-per-page {
+  display: flex;
+  justify-content: right;
+  width: 50%;
+  margin: 20px 0px 0px;
 }
 
 /* SEARCH AREA */
 .search-area {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0px;
+  justify-content: left;
+  width: 50%;
+  margin: 20px 0px 0px;
 }
 
 .search-area input {
