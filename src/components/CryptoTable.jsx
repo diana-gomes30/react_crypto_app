@@ -1,17 +1,30 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const CryptoTable = ({ cryptoCurrencies }) => {
+export const CryptoTable = () => {
+  const [cryptoCurrencies, setCryptoCurrencies] = useState([]);
   const [search, setSearch] = useState('');
+
+  const fetchData = async () => {
+    const response = await fetch(
+      'https://api.coingecko.com/api/v3/coins/markets?vs_currency=eur'
+    );
+    const data = await response.json();
+    return setCryptoCurrencies(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleChange = (event) => {
     setSearch(event.target.value);
   };
 
   const data = cryptoCurrencies.filter((cryptoCurrency) =>
-    cryptoCurrency.coin.toLowerCase().includes(search.toLowerCase())
+    cryptoCurrency.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -33,31 +46,34 @@ export const CryptoTable = ({ cryptoCurrencies }) => {
           <tbody>
             <tr className="header-table">
               <th></th>
-              <th>#</th>
-              <th>Coin</th>
-              <th>Price</th>
-              <th>1h</th>
-              <th>24h</th>
-              <th>7d</th>
-              <th>24h Volume</th>
-              <th>Mkt Cap</th>
+              <th className="l-align">#</th>
+              <th className="l-align">Coin</th>
+              <th className="r-align">Price</th>
+              <th className="r-align">24h</th>
+              <th className="r-align">24h Volume</th>
+              <th className="r-align">Mkt Cap</th>
             </tr>
 
-            {data.map((cryptoCurrency, index) => (
-              <tr key={index} className="data-table">
-                <td>
-                  <FontAwesomeIcon icon={faStar} className="favorite-icon" />
-                </td>
-                <td>{cryptoCurrency.position}</td>
-                <td>{cryptoCurrency.coin}</td>
-                <td>{cryptoCurrency.price}</td>
-                <td>{cryptoCurrency.hour}</td>
-                <td>{cryptoCurrency.day}</td>
-                <td>{cryptoCurrency.week}</td>
-                <td>{cryptoCurrency.dayVolume}</td>
-                <td>{cryptoCurrency.mktCap}</td>
-              </tr>
-            ))}
+            {data
+              .sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))
+              .map((cryptoCurrency, index) => (
+                <tr key={index} className="data-table">
+                  <td>
+                    <FontAwesomeIcon icon={faStar} className="favorite-icon" />
+                  </td>
+                  <td className="l-align">{cryptoCurrency.market_cap_rank}</td>
+                  <td className="name-image">
+                    <img src={cryptoCurrency.image} />
+                    {cryptoCurrency.name}
+                  </td>
+                  <td className="r-align">{cryptoCurrency.current_price}</td>
+                  <td className="r-align">
+                    {cryptoCurrency.price_change_percentage_24h}
+                  </td>
+                  <td className="r-align">{cryptoCurrency.total_volume}</td>
+                  <td className="r-align">{cryptoCurrency.market_cap}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
