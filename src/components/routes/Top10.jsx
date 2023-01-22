@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { CryptoTable } from '../CryptoTable';
 import { Navbar } from '../Navbar';
 
 class Top10 extends Component {
@@ -6,7 +7,7 @@ class Top10 extends Component {
     return (
       <div>
         <Navbar />
-        <h2>Top10</h2>
+        <CryptoTable isTop10Page={true} />
       </div>
     );
   }

@@ -118,11 +118,17 @@ td img {
   margin: auto;
 }
 
+/* NUM PER PAGE AREA */
 .num-per-page {
   display: flex;
   justify-content: right;
   width: 50%;
   margin: 20px 0px 0px;
+}
+
+select {
+  background-color: #e0e1dd;
+  color: #0d1b2a;
 }
 
 /* SEARCH AREA */
@@ -131,6 +137,10 @@ td img {
   justify-content: left;
   width: 50%;
   margin: 20px 0px 0px;
+}
+
+.search-area-top10 {
+  width: 100%;
 }
 
 .search-area input {

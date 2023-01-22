@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <div>
         <Navbar />
-        <CryptoTable />
+        <CryptoTable isTop10Page={false} />
       </div>
     );
   }
