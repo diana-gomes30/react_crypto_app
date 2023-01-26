@@ -12,7 +12,9 @@ export const CryptoTable = (props) => {
   const [search, setSearch] = useState('');
 
   const fetchData = async () => {
-    let url = props.isTop10Page
+    let url = '';
+
+    url = props.isTop10Page
       ? 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=10&page=1&price_change_percentage=1h%2C24h%2C7d'
       : 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&per_page=' +
         options.numPerPage +
@@ -22,16 +24,18 @@ export const CryptoTable = (props) => {
 
     const response = await fetch(url);
     const data = await response.json();
-    return setCryptoCurrencies(data);
+    setCryptoCurrencies(data);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  const data = cryptoCurrencies.filter((cryptoCurrency) =>
-    cryptoCurrency.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const data = props.isWatchlistPage
+    ? []
+    : cryptoCurrencies.filter((cryptoCurrency) =>
+        cryptoCurrency.name.toLowerCase().includes(search.toLowerCase())
+      );
 
   const handleChange = (event) => {
     setSearch(event.target.value);
@@ -47,15 +51,19 @@ export const CryptoTable = (props) => {
     fetchData();
   };
 
+  const handleClickStarBtn = () => {};
+
   return (
     <div>
-      <TableOptions
-        isTop10Page={props.isTop10Page}
-        onChangeInput={handleChange}
-        onChangeSelect={changeNumPerPage}
-        value={search}
-      />
-      <Table data={data} />
+      {!props.isWatchlistPage && (
+        <TableOptions
+          isTop10Page={props.isTop10Page}
+          onChangeInput={handleChange}
+          onChangeSelect={changeNumPerPage}
+          value={search}
+        />
+      )}
+      <Table data={data} onAddRemoveWatchist={handleClickStarBtn} />
     </div>
   );
 };

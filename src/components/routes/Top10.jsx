@@ -7,6 +7,7 @@ class Top10 extends Component {
     return (
       <div>
         <Navbar />
+        <h1>Top 10</h1>
         <CryptoTable isTop10Page={true} />
       </div>
     );

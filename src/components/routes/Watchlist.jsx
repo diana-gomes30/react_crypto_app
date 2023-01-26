@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { CryptoTable } from '../CryptoTable';
 import { Navbar } from '../Navbar';
 
 class Watchlist extends Component {
@@ -6,7 +7,8 @@ class Watchlist extends Component {
     return (
       <div>
         <Navbar />
-        <h2>Watchlist</h2>
+        <h1>WatchList</h1>
+        <CryptoTable isWatchlistPage={true} />
       </div>
     );
   }

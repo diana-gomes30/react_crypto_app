@@ -50,6 +50,12 @@ li {
   padding: 5px 14px;
 }
 
+h1 {
+  color: #e0e1dd;
+  text-align: center;
+  margin: 20px 0px;
+}
+
 /* TABLE */
 .table-coins {
   display: flex;
