@@ -1,35 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
 
-export const ItemTable = (props) => {
-  var [coinsListStorage, setCoinsListStorage] = useState([]);
-
-  const coin = props.coin;
-
-  useEffect(() => {
-    setCoinsListStorage(JSON.parse(localStorage.getItem('coins')));
-  }, []);
-
-  const getCoins = () => {
-    return localStorage.getItem('coins')
-      ? JSON.parse(localStorage.getItem('coins'))
-      : [];
-  };
-
-  const handleClick = () => {
-    if (coinsListStorage.includes(coin.id)) {
-      let coins = getCoins().filter((e) => e !== coin.id);
-      localStorage.setItem('coins', JSON.stringify(coins));
-      setCoinsListStorage(JSON.parse(localStorage.getItem('coins')));
-    } else {
-      let coins = getCoins();
-      coins = [...coins, coin.id];
-      localStorage.setItem('coins', JSON.stringify(coins));
-      setCoinsListStorage(JSON.parse(localStorage.getItem('coins')));
-    }
-  };
-
+export const ItemTable = ({ coin, isSelected, onWatchlist }) => {
   const roundNumber = (number) => {
     return Math.round(number * 10) / 10;
   };
@@ -46,13 +18,13 @@ export const ItemTable = (props) => {
   };
 
   return (
-    <tr key={coin.id.toString()} className="data-table">
+    <tr key={coin.id} className="data-table">
       <td>
         <FontAwesomeIcon
-          onClick={handleClick}
+          onClick={() => onWatchlist(coin.id)}
           icon={faStar}
           className="favorite-icon"
-          style={{ color: coinsListStorage.includes(coin.id) && 'yellow' }}
+          style={{ color: isSelected ? 'yellow' : '' }}
         />
       </td>
       <td className="l-align">{coin.market_cap_rank}</td>

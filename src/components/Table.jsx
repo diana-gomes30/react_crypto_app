@@ -1,9 +1,9 @@
 import { ItemTable } from './ItemTable';
 
-export const Table = (props) => {
+export const Table = ({ data, coins, onWatchlist }) => {
   return (
     <div className="table-coins">
-      <table data={props.data}>
+      <table data={data}>
         <tbody>
           <tr className="header-table">
             <th></th>
@@ -17,10 +17,15 @@ export const Table = (props) => {
             <th className="r-align">Mkt Cap</th>
           </tr>
 
-          {props.data
+          {data
             ?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))
             .map((coin) => (
-              <ItemTable key={coin.id.toString()} coin={coin} />
+              <ItemTable
+                key={coin.id}
+                coin={coin}
+                isSelected={coins?.includes(coin.id)}
+                onWatchlist={onWatchlist}
+              />
             ))}
         </tbody>
       </table>

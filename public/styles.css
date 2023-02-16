@@ -53,7 +53,7 @@ li {
 h1 {
   color: #e0e1dd;
   text-align: center;
-  margin: 20px 0px;
+  margin: 40px 0px;
 }
 
 /* TABLE */
@@ -143,10 +143,6 @@ select {
   justify-content: left;
   width: 50%;
   margin: 20px 0px 0px;
-}
-
-.search-area-top10 {
-  width: 100%;
 }
 
 .search-area input {
