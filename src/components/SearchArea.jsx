@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-export const SearchArea = ({ onChangeInput, value }) => (
+export const SearchArea = ({ onChangeInput, value, onSearchClick }) => (
   <div className={'search-area'}>
     <input
       type="text"
@@ -9,8 +9,10 @@ export const SearchArea = ({ onChangeInput, value }) => (
       onChange={onChangeInput}
       value={value}
     />
-    <i>
-      <FontAwesomeIcon icon={faMagnifyingGlass} />
-    </i>
+    <button onClick={onSearchClick}>
+      <i>
+        <FontAwesomeIcon icon={faMagnifyingGlass} />
+      </i>
+    </button>
   </div>
 );

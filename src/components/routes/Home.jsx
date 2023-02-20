@@ -6,6 +6,7 @@ import { TableOptions } from '../TableOptions';
 const initialOptions = {
   page: 1,
   numPerPage: 15,
+  valueToSearch: '',
 };
 
 const Home = () => {
@@ -28,17 +29,19 @@ const Home = () => {
     }));
   };
 
-  /*const data = props.isWatchlistPage
-    ? []
-    : cryptoCurrencies.filter((cryptoCurrency) =>
-        cryptoCurrency.name.toLowerCase().includes(search.toLowerCase())
-      );*/
+  const searchByValue = () => {
+    setOptions((prevValue) => ({
+      ...prevValue,
+      valueToSearch: search,
+    }));
+  };
 
   return (
     <div>
       <TableOptions
         onChangeInput={handleChange}
         onChangeSelect={changeNumPerPage}
+        onSearchClick={searchByValue}
         value={search}
       />
       <Table data={cryptoCurrencies} coins={coins} onWatchlist={handleClick} />
