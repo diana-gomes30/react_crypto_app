@@ -1,8 +1,14 @@
-export const NumPerPageOption = (props) => {
+import { ChangeEvent } from 'react';
+
+interface NumPerPageOptionProps {
+  onChangeSelect: (event: ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export const NumPerPageOption = ({ onChangeSelect }: NumPerPageOptionProps) => {
   return (
     <div className="num-per-page">
       <select
-        onChange={props.onChangeSelect}
+        onChange={onChangeSelect}
         name="num-per-page"
         id="num-per-page"
         defaultValue={'15'}

@@ -1,19 +1,30 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { Coin } from '../interfaces/coins';
 
-export const ItemTable = ({ coin, isSelected, onWatchlist }) => {
-  const roundNumber = (number) => {
+interface ItemTableProps {
+  coin: Coin;
+  isSelected: boolean;
+  onWatchlist: (id: string) => void;
+}
+
+export const ItemTable = ({
+  coin,
+  isSelected,
+  onWatchlist,
+}: ItemTableProps) => {
+  const roundNumber = (number: number) => {
     return Math.round(number * 10) / 10;
   };
 
-  const formatToMoney = (number) => {
+  const formatToMoney = (number: number) => {
     return number.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD',
     });
   };
 
-  const getColor = (number) => {
+  const getColor = (number: number) => {
     return roundNumber(number) < 0 ? '#e15241' : '#4eaf0a';
   };
 

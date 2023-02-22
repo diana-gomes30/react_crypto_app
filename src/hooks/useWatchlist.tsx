@@ -1,23 +1,15 @@
 import { useEffect, useState } from 'react';
 import useLocalStorage from './useLocalStorage';
+import { Coin } from '../interfaces/coins';
 
-const useCoins = (initialOptions) => {
-  const [cryptoCurrencies, setCryptoCurrencies] = useState([]);
-  const [options, setOptions] = useState(initialOptions);
+const useWatchlist = () => {
+  const [cryptoCurrencies, setCryptoCurrencies] = useState<Coin[]>([]);
   const [coins, setCoins] = useLocalStorage();
 
   const fetchData = async () => {
-    if (options.valueToSearch !== '') {
-      const urlToSearchId =
-        'https://api.coingecko.com/api/v3/search?query=' +
-        options.valueToSearch;
-      const response = await fetch(urlToSearchId);
-      const data = await response.json();
-
-      const coinsId = data.coins.map((e) => e.id);
-      const coinsData = await Promise.all(
-        coinsId.map(async (e) => {
-          console.log('Coin Id: ' + e);
+    const coinsData = await Promise.all(
+      coins.map(async (e: string) => {
+        try {
           const url =
             'https://api.coingecko.com/api/v3/coins/' +
             e +
@@ -25,7 +17,7 @@ const useCoins = (initialOptions) => {
           const response = await fetch(url);
           const data = await response.json();
 
-          let coin = {
+          let coin: Coin = {
             id: data.id,
             market_cap_rank: data.market_data.market_cap_rank,
             image: data.image.large,
@@ -42,29 +34,23 @@ const useCoins = (initialOptions) => {
           };
 
           return coin;
-        })
-      );
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
+      })
+    );
 
-      setCryptoCurrencies(coinsData);
-    } else {
-      const url =
-        'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=' +
-        (options.numPerPage || 15) +
-        '&page=' +
-        (options.page || 1) +
-        '&sparkline=false&price_change_percentage=1h%2C24h%2C7d';
+    const filterCoins = coinsData.filter((e) => e!) as Coin[];
 
-      const response = await fetch(url);
-      const data = await response.json();
-      setCryptoCurrencies(data);
-    }
+    setCryptoCurrencies(filterCoins);
   };
 
   useEffect(() => {
     fetchData();
-  }, [options]);
+  }, [coins]);
 
-  return { cryptoCurrencies, setOptions, coins, setCoins };
+  return { cryptoCurrencies, coins, setCoins };
 };
 
-export default useCoins;
+export default useWatchlist;

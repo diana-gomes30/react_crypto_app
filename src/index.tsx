@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './components/routes/Home';
-import Top10 from './components/routes/Top10';
-import Watchlist from './components/routes/Watchlist';
+import Home from './routes/Home';
+import Top10 from './routes/Top10';
+import Watchlist from './routes/Watchlist';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as Element | DocumentFragment
+);
 root.render(
   <React.StrictMode>
     <BrowserRouter>

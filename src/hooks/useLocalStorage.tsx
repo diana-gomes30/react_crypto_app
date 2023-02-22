@@ -1,14 +1,17 @@
 import { useState } from 'react';
 
-const useLocalStorage = () => {
+const useLocalStorage = (): [
+  coins: string[],
+  setCoins: (coin: string) => void
+] => {
   const getCoins = () =>
     localStorage.getItem('coins')
-      ? JSON.parse(localStorage.getItem('coins'))
+      ? JSON.parse(localStorage.getItem('coins') || '[]')
       : [];
 
-  const [coins, setLocalCoins] = useState(getCoins());
+  const [coins, setLocalCoins] = useState<string[]>(getCoins());
 
-  const setCoins = (coin) => {
+  const setCoins = (coin: string) => {
     if (coins?.includes(coin)) {
       const filterCoins = coins.filter((e) => e !== coin);
       localStorage.setItem('coins', JSON.stringify(filterCoins));

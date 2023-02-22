@@ -1,10 +1,10 @@
 import useWatchlist from '../hooks/useWatchlist';
-import { Table } from '../Table';
+import { Table } from '../components/Table';
 
 const Watchlist = () => {
   const { cryptoCurrencies, coins, setCoins } = useWatchlist();
 
-  const handleClick = (id) => {
+  const handleClick = (id: string) => {
     setCoins(id);
   };
 

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import useCoins from '../hooks/useCoins';
-import { Table } from '../Table';
-import { TableOptions } from '../TableOptions';
+import { Table } from '../components/Table';
+import { TableOptions } from '../components/TableOptions';
+import { ChangeEvent } from 'react';
+import { Options } from '../interfaces/coins';
 
-const initialOptions = {
+const initialOptions: Options = {
   page: 1,
   numPerPage: 15,
   valueToSearch: '',
@@ -11,18 +13,19 @@ const initialOptions = {
 
 const Home = () => {
   const [search, setSearch] = useState('');
-  const { cryptoCurrencies, setOptions, coins, setCoins } =
-    useCoins(initialOptions);
+  const { cryptoCurrencies, setOptions, coins, setCoins } = useCoins({
+    initialOptions,
+  });
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
   };
 
-  const handleClick = (id) => {
+  const handleClick = (id: string) => {
     setCoins(id);
   };
 
-  const changeNumPerPage = (event) => {
+  const changeNumPerPage = (event: ChangeEvent<HTMLSelectElement>) => {
     setOptions((prevValue) => ({
       ...prevValue,
       numPerPage: +event.target.value,

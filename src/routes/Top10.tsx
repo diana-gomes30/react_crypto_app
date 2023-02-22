@@ -1,15 +1,16 @@
 import useCoins from '../hooks/useCoins';
-import { Table } from '../Table';
+import { Table } from '../components/Table';
+import { Options } from '../interfaces/coins';
 
-const initialOptions = {
+const initialOptions: Options = {
   page: 1,
   numPerPage: 10,
 };
 
 const Top10 = () => {
-  const { cryptoCurrencies, coins, setCoins } = useCoins(initialOptions);
+  const { cryptoCurrencies, coins, setCoins } = useCoins({ initialOptions });
 
-  const handleClick = (id) => {
+  const handleClick = (id: string) => {
     setCoins(id);
   };
 

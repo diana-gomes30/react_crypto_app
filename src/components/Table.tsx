@@ -1,9 +1,16 @@
+import { Coin } from '../interfaces/coins';
 import { ItemTable } from './ItemTable';
 
-export const Table = ({ data, coins, onWatchlist }) => {
+interface TableProps {
+  data: Coin[];
+  coins: string[];
+  onWatchlist: (id: string) => void;
+}
+
+export const Table = ({ data, coins, onWatchlist }: TableProps) => {
   return (
     <div className="table-coins">
-      <table data={data}>
+      <table>
         <tbody>
           <tr className="header-table">
             <th></th>
@@ -19,7 +26,7 @@ export const Table = ({ data, coins, onWatchlist }) => {
 
           {data
             ?.sort((a, b) => (a.market_cap_rank > b.market_cap_rank ? 1 : -1))
-            .map((coin) => (
+            .map((coin: Coin) => (
               <ItemTable
                 key={coin.id}
                 coin={coin}

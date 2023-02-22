@@ -1,7 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { ChangeEvent } from 'react';
 
-export const SearchArea = ({ onChangeInput, value, onSearchClick }) => (
+interface SearchAreaProps {
+  onChangeInput: (event: ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onSearchClick: () => void;
+}
+
+export const SearchArea = ({
+  onChangeInput,
+  value,
+  onSearchClick,
+}: SearchAreaProps) => (
   <div className={'search-area'}>
     <input
       type="text"
