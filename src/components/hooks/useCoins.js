@@ -7,7 +7,7 @@ const useCoins = (initialOptions) => {
   const [coins, setCoins] = useLocalStorage();
 
   const fetchData = async () => {
-    if (options.valueToSearch !== '') {
+    if (options.valueToSearch) {
       const urlToSearchId =
         'https://api.coingecko.com/api/v3/search?query=' +
         options.valueToSearch;
